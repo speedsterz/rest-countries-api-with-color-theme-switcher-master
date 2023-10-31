@@ -2,12 +2,18 @@ import {
   MagnifyingGlassIcon,
   ChevronDownIcon,
 } from "@heroicons/react/20/solid";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
+import { useSelectedRegion, useSearchCountry } from "../store/useStore";
 
 const FilterCountry = () => {
   const [Filter, setFilter] = useState(false);
-  const [selectedRegion, setSelectedRegion] = useState("All");
-  const regions = ["Africa", "America", "Asia", "Europe", "Oceania"];
+  const { SelectedRegion, setSelectedRegion } = useSelectedRegion();
+  const { SearchCountry, setSearchCountry } = useSearchCountry();
+  const regions = ["All", "Africa", "Americas", "Asia", "Europe", "Oceania"];
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchCountry(e.target.value);
+  };
 
   const toggleFilter = () => {
     setFilter(!Filter);
@@ -27,6 +33,8 @@ const FilterCountry = () => {
             placeholder="Search for a country"
             name=""
             id=""
+            value={SearchCountry}
+            onChange={handleChange}
           />
         </div>
         <div className="relative">
@@ -35,7 +43,7 @@ const FilterCountry = () => {
             onClick={toggleFilter}
           >
             <h2>
-              {selectedRegion == "All" ? "Filter by Region" : selectedRegion}
+              {SelectedRegion == "All" ? "Filter by Region" : SelectedRegion}
             </h2>
             <ChevronDownIcon
               className={`w-5 transform transition-transform duration-200 ${
