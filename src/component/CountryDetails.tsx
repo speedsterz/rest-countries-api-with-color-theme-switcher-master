@@ -57,7 +57,7 @@ const CountryDetails: React.FC = () => {
       for (let country of Select_Country[0].borders) {
         temp = data?.find((i) => i.cca3 == country);
         Arr.push(temp?.name.common);
-        if (Arr.length == 3) break;
+        // if (Arr.length == 3) break;
       }
       return Arr;
     };
@@ -118,10 +118,10 @@ const CountryDetails: React.FC = () => {
                 </ul>
               </div>
             </div>
-            <div className="flex flex-col gap-1 md:flex-row md:items-center lg:gap-4 ">
+            <div className="flex flex-col justify-start gap-1 md:flex-row md:items-center lg:gap-4 ">
               <h2 className="font-2xl font-bold">Border Countries:</h2>
 
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3 ">
                 {border_countries().map((country) => (
                   <Link
                     className=" rounded bg-LightMode-element px-4 py-1 shadow-md dark:bg-DarkMode-element"
