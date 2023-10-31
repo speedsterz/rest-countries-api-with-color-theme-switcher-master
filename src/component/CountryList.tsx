@@ -52,7 +52,7 @@ const CountryList = () => {
       <ul className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {filteredCountries?.map((country) => (
           <Link to={`/country/${country.name.common}`} key={country.cca3}>
-            <div className="flex cursor-pointer flex-col gap-4 overflow-hidden rounded-md bg-LightMode-bg pb-12 text-LightMode-text shadow-md dark:bg-DarkMode-element  dark:text-white">
+            <div className="flex cursor-pointer flex-col gap-4 overflow-hidden rounded-md bg-LightMode-element pb-12 text-LightMode-text shadow-md dark:bg-DarkMode-element  dark:text-white">
               <img
                 className="h-[240px] sm:h-[180px]"
                 src={country.flags.png}
