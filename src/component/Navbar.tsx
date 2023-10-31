@@ -13,7 +13,7 @@ const Navbar = () => {
       <div className="content flex justify-between gap-4 ">
         <h1 className="text-lg">Where in the world?</h1>
         <div
-          className="flex cursor-pointer select-none items-center gap-1"
+          className="flex cursor-pointer select-none items-center gap-1 hover:text-blue-700"
           onClick={SwitchTheme}
         >
           <MoonIcon className={!Dark ? "w-5" : "hidden w-4"} />

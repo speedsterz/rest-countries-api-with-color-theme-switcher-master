@@ -74,7 +74,7 @@ const CountryDetails: React.FC = () => {
         <Link
           onClick={() => setSearchCountry("")}
           to="/"
-          className="inline-flex gap-1 self-start rounded bg-LightMode-element px-6 py-2   shadow-lg dark:bg-DarkMode-element "
+          className="inline-flex gap-1 self-start rounded bg-LightMode-element px-6 py-2 shadow-lg   hover:border hover:border-gray-900 dark:bg-DarkMode-element  dark:hover:border-white "
         >
           <ArrowLeftIcon className="w-4" /> Back
         </Link>
@@ -135,7 +135,7 @@ const CountryDetails: React.FC = () => {
               <div className="flex flex-wrap gap-3 ">
                 {border_countries().map((country) => (
                   <Link
-                    className=" rounded bg-LightMode-element px-4 py-1 shadow-md dark:bg-DarkMode-element"
+                    className="rounded bg-LightMode-element px-4 py-1 shadow-md hover:bg-gray-100 dark:bg-DarkMode-element dark:hover:border dark:hover:border-white"
                     to={`/country/${country}`}
                   >
                     {country}
