@@ -9,10 +9,18 @@ interface CountryFullType {
   cca3: string;
   name: {
     common: string;
-    nativeName: string;
+    nativeName: {
+      [key: string]: {
+        common: string;
+      };
+    };
   };
   tld: string;
-  currencies: string;
+  currencies: {
+    [key: string]: {
+      name: string;
+    };
+  };
   region: string;
   subregion: string;
   population: number;
@@ -30,12 +38,13 @@ const fetchCountries = () => {
 };
 
 const CountryDetails: React.FC = () => {
-  const { countryName } = useParams<{ countryName: string }>();
+  const { countryName = "" } = useParams<{ countryName?: string }>();
   const { data, isLoading, isError } = useQuery<CountryFullType[]>(
     "countries",
     fetchCountries,
   );
   const { setSearchCountry } = useSearchCountry();
+
   const Select_Country = data?.filter((country) => {
     return country.name.common
       .toLowerCase()
@@ -51,13 +60,12 @@ const CountryDetails: React.FC = () => {
   }
   if (Select_Country) {
     const border_countries = () => {
-      let Arr = [];
+      const Arr = [];
       let temp;
       if (!Select_Country[0].borders) return [];
-      for (let country of Select_Country[0].borders) {
+      for (const country of Select_Country[0].borders) {
         temp = data?.find((i) => i.cca3 == country);
         Arr.push(temp?.name.common);
-        // if (Arr.length == 3) break;
       }
       return Arr;
     };
@@ -81,7 +89,10 @@ const CountryDetails: React.FC = () => {
                 <ul className="flex flex-col gap-2">
                   <li>
                     <span className="mr-2 font-bold">Native Name:</span>
-                    {Object.values(Select_Country[0].name.nativeName)[0].common}
+                    {
+                      Object.values(Select_Country[0].name.nativeName!)[0]
+                        .common
+                    }
                   </li>
                   <li>
                     <span className="mr-2 font-bold">Population:</span>
@@ -109,7 +120,7 @@ const CountryDetails: React.FC = () => {
                   </li>
                   <li>
                     <span className="mr-2 font-bold">Currencies:</span>
-                    {Object.values(Select_Country[0].currencies)[0].name}
+                    {Object.values(Select_Country[0].currencies!)[0].name}
                   </li>
                   <li>
                     <span className="mr-2 font-bold">Languages:</span>
